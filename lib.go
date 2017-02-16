@@ -1,9 +1,9 @@
 package stream
 
 import (
+	"encoding/binary"
 	"github.com/gogo/protobuf/proto"
 	"io"
-	"encoding/binary"
 	"sync"
 )
 
@@ -36,7 +36,6 @@ func Write(w io.Writer, m Message) (err error) {
 	return
 }
 
-
 // WriteWithLock is just like Write, but will lock on write
 func WriteWithLock(w LockableWriter, m Message) (err error) {
 	messageBytes, err := m.Marshal()
@@ -57,7 +56,7 @@ func WriteWithLock(w LockableWriter, m Message) (err error) {
 
 // Read reads the message from the reader
 func Read(r io.Reader, m Message) (err error) {
-	sizeBytes  := make([]byte, bytesForSize)
+	sizeBytes := make([]byte, bytesForSize)
 
 	if _, err = io.ReadFull(r, sizeBytes); err == nil {
 		size := binary.BigEndian.Uint64(sizeBytes)
