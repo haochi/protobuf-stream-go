@@ -1,5 +1,7 @@
 # Protobuf Stream
 
+[![GoDoc](https://godoc.org/github.com/haochi/protobuf-stream-go?status.svg)](https://godoc.org/github.com/haochi/protobuf-stream-go)
+
 This is used for reading and writing protobuf streams, specifically for messages that implements the following interface:
 
 ```golang
